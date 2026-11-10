@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rodrigo Melo · Sites e Sistemas</title>
+<meta name="description" content="Desenvolvedor em Ribeirão Preto. Sites, landing pages e sistemas sob medida para pequenos negócios.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: cabeçalho enxuto, hero em duas colunas com um "cupom de orçamento" impresso, depois seções em grade com régua à esquerda. */
+:root{
+  --bg:#F3F4F1;
+  --surface:#FFFFFF;
+  --ink:#121620;
+  --muted:#5B6170;
+  --line:#D9DBD6;
+  --accent:#1F47F0;
+  --accent-ink:#FFFFFF;
+  --mark:#FFE14D;
+  --paper:#FBFAF6;
+  --paper-ink:#1A1A1A;
+  --display:"Archivo", "Arial Black", system-ui, sans-serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "Courier New", monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1218; --surface:#171B23; --ink:#E9EBEF; --muted:#9AA1AE; --line:#2A303B;
+    --accent:#7B93FF; --accent-ink:#0F1218; --mark:#E8C93A; --paper:#F4F2EA; --paper-ink:#1A1A1A;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1218; --surface:#171B23; --ink:#E9EBEF; --muted:#9AA1AE; --line:#2A303B;
+  --accent:#7B93FF; --accent-ink:#0F1218; --mark:#E8C93A; --paper:#F4F2EA; --paper-ink:#1A1A1A;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.02}
+
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0}
+.brand{font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:800;font-size:19px;text-decoration:none;letter-spacing:-.01em}
+.brand span{color:var(--accent)}
+.nav{display:flex;gap:22px;align-items:center;font-size:15px}
+.nav a{text-decoration:none;color:var(--muted)}
+.nav a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);font-weight:600;text-decoration:none;padding:12px 20px;border-radius:999px;border:0;font-size:15px;font-family:var(--body);cursor:pointer;transition:transform .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.nav .btn{color:var(--accent-ink)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:center;padding:48px 0 88px}
+.kicker{font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 20px}
+.hero h1{font-size:clamp(44px,7vw,88px);font-weight:900;font-variation-settings:"wdth" 118;letter-spacing:-.035em}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 58%, var(--mark) 58%, var(--mark) 92%, transparent 92%);color:inherit}
+:root[data-theme="dark"] .hero h1 em{color:var(--ink)}
+.lede{font-size:20px;color:var(--muted);max-width:34ch;margin:26px 0 32px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+
+/* cupom */
+.receipt-slot{position:relative;padding-top:14px}
+.receipt-slot::before{content:"";position:absolute;top:0;left:-14px;right:-14px;height:14px;border-radius:8px;background:var(--ink)}
+.receipt{position:relative;background:var(--paper);color:var(--paper-ink);font-family:var(--mono);font-size:14px;line-height:1.55;padding:26px 24px 34px;box-shadow:0 18px 40px -18px rgba(0,0,0,.35);
+  -webkit-mask:radial-gradient(circle at 8px 100%, transparent 7px, #000 7.5px) 0 0/16px 100% repeat-x;
+          mask:radial-gradient(circle at 8px 100%, transparent 7px, #000 7.5px) 0 0/16px 100% repeat-x;
+  animation:print 1.6s cubic-bezier(.3,.7,.2,1) both}
+@keyframes print{from{transform:translateY(-40px);clip-path:inset(0 0 100% 0)}to{transform:none;clip-path:inset(0 0 0 0)}}
+.receipt .c{text-align:center}
+.receipt .big{font-weight:600;font-size:16px;letter-spacing:.08em}
+.receipt hr{border:0;border-top:1.5px dashed #9a9a9a;margin:14px 0}
+.receipt .row{display:flex;justify-content:space-between;gap:12px;font-variant-numeric:tabular-nums}
+.receipt .row b{font-weight:600}
+.receipt .small{font-size:12px;color:#555}
+.barcode{height:44px;margin-top:16px;background:repeating-linear-gradient(90deg,#1a1a1a 0 2px,transparent 2px 4px,#1a1a1a 4px 7px,transparent 7px 8px,#1a1a1a 8px 9px,transparent 9px 12px)}
+
+/* seções */
+section.block{padding:84px 0;border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:200px 1fr;gap:32px;margin-bottom:48px;align-items:baseline}
+.sec-num{font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.sec-head h2{font-size:clamp(32px,4.4vw,52px);font-weight:850;font-variation-settings:"wdth" 110;letter-spacing:-.03em}
+.sec-head p{grid-column:2;color:var(--muted);max-width:60ch;margin:14px 0 0}
+
+/* serviços */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.svc h3{font-size:24px;font-weight:800;font-variation-settings:"wdth" 105;letter-spacing:-.015em}
+.svc p{margin:0;color:var(--muted);font-size:16px}
+.svc ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:15px}
+.svc li{padding-left:22px;position:relative}
+.svc li::before{content:"";position:absolute;left:2px;top:.62em;width:10px;height:2px;background:var(--accent)}
+.price{margin-top:auto;padding-top:16px;border-top:1px dashed var(--line);font-family:var(--mono);font-size:14px;color:var(--muted)}
+.price strong{display:block;font-family:var(--display);font-variation-settings:"wdth" 110;font-size:30px;color:var(--ink);font-weight:850;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.svc.featured{border:2px solid var(--accent)}
+.tag{align-self:flex-start;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);padding:4px 9px;border-radius:999px}
+
+/* projetos */
+.projects{display:grid;gap:28px}
+.proj{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:32px}
+.proj h3{font-size:30px;font-weight:850;font-variation-settings:"wdth" 108;letter-spacing:-.02em;margin-bottom:10px}
+.proj p{color:var(--muted);margin:0 0 16px}
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.stack li{font-family:var(--mono);font-size:12.5px;border:1px solid var(--line);border-radius:6px;padding:3px 9px;color:var(--muted)}
+.feats{margin:0 0 18px;padding-left:18px;font-size:15.5px}
+.feats li{margin-bottom:4px}
+
+/* mockups desenhados em CSS */
+.mock{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#0E1117;color:#E6E8EC;font-family:var(--body);font-size:12px;box-shadow:0 20px 40px -24px rgba(0,0,0,.5)}
+.mock .bar{display:flex;gap:6px;padding:9px 12px;background:#1A1F29}
+.mock .bar i{width:9px;height:9px;border-radius:50%;background:#3A4252}
+.pdv{display:grid;grid-template-columns:1fr 130px;min-height:230px}
+.pdv .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px;align-content:start}
+.pdv .item{background:#1C2230;border-radius:8px;padding:10px 8px;display:flex;flex-direction:column;gap:3px}
+.pdv .item b{font-weight:600;font-size:12px}
+.pdv .item span{color:#8E97A8;font-family:var(--mono);font-size:11px}
+.pdv .order{background:#151A23;border-left:1px solid #262D3A;padding:12px;display:flex;flex-direction:column;gap:6px;font-family:var(--mono);font-size:11px}
+.pdv .order .t{font-family:var(--body);font-weight:600;font-size:12px;color:#fff}
+.pdv .order .l{display:flex;justify-content:space-between;color:#B8BFCC}
+.pdv .order .tot{margin-top:auto;border-top:1px dashed #3A4252;padding-top:8px;display:flex;justify-content:space-between;color:#fff;font-weight:600}
+.pdv .order .go{background:#F2B33D;color:#1a1a1a;text-align:center;border-radius:6px;padding:7px;font-family:var(--body);font-weight:700}
+.hub{padding:14px;display:grid;gap:10px;min-height:230px}
+.hub .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hub .kpi{background:#1C2230;border-radius:8px;padding:10px}
+.hub .kpi span{display:block;color:#8E97A8;font-size:10.5px}
+.hub .kpi b{font-size:18px;font-family:var(--mono);font-weight:600}
+.hub .list{background:#1C2230;border-radius:8px;padding:6px 10px}
+.hub .li{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #2A3140}
+.hub .li:last-child{border-bottom:0}
+.pill{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:999px}
+.pill.ok{background:#1F3B2B;color:#7BE0A1}
+.pill.wait{background:#3B331F;color:#F2C86B}
+
+/* processo */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:s;border-top:2px solid var(--ink)}
+.step{padding:22px 22px 8px 0}
+.step + .step{padding-left:22px;border-left:1px solid var(--line)}
+.step .n{font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:600}
+.step h3{font-size:21px;font-weight:800;font-variation-settings:"wdth" 104;margin:10px 0 8px;letter-spacing:-.01em}
+.step p{margin:0;color:var(--muted);font-size:15.5px}
+
+/* ferramentas */
+.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.tool-group{border-top:2px solid var(--ink);padding-top:14px}
+.tool-group h3{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+.tool-group ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.tool-group li{font-family:var(--display);font-variation-settings:"wdth" 108;font-size:21px;font-weight:750;letter-spacing:-.01em;line-height:1.2}
+.tool-group li small{display:block;font-family:var(--body);font-size:14px;font-weight:400;color:var(--muted);letter-spacing:0;margin-top:2px}
+
+/* sobre */
+.about{display:grid;grid-template-columns:200px 1fr;gap:32px}
+.about .txt{max-width:62ch}
+.about .txt p{margin:0 0 16px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.fact{border-top:2px solid var(--ink);padding-top:12px}
+.fact b{display:block;font-family:var(--display);font-variation-settings:"wdth" 110;font-size:22px;font-weight:800}
+.fact span{color:var(--muted);font-size:14.5px}
+
+/* contato */
+.contact{background:var(--ink);color:var(--bg);border-radius:22px;padding:56px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+.contact h2{font-size:clamp(34px,5vw,60px);font-weight:900;font-variation-settings:"wdth" 116;letter-spacing:-.035em;color:var(--bg)}
+.contact p{color:color-mix(in srgb, var(--bg) 72%, transparent);margin:16px 0 0;max-width:40ch}
+.channels{display:grid;gap:12px}
+.channel{display:flex;flex-direction:column;gap:2px;padding:16px 18px;border-radius:12px;background:color-mix(in srgb, var(--bg) 9%, transparent);text-decoration:none;color:var(--bg);transition:background .15s}
+.channel:hover{background:color-mix(in srgb, var(--bg) 16%, transparent)}
+.channel span{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;opacity:.7}
+.channel b{font-size:18px;font-weight:600;word-break:break-word}
+
+footer{padding:40px 0 56px;color:var(--muted);font-size:14px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-family:var(--mono)}
+
+@media (max-width:900px){
+  .tools{grid-template-columns:1fr 1fr}
+  .hero{grid-template-columns:1fr;gap:44px;padding-top:24px}
+  .receipt-slot{max-width:400px}
+  .services{grid-template-columns:1fr}
+  .proj{grid-template-columns:1fr;padding:22px}
+  .steps{grid-template-columns:1fr 1fr}
+  .step:nth-child(3){padding-left:0;border-left:0}
+  .step{padding-bottom:22px}
+  .sec-head,.about{grid-template-columns:1fr;gap:10px}
+  .sec-head p{grid-column:1}
+  .contact{grid-template-columns:1fr;padding:32px}
+  .nav a:not(.btn){display:none}
+}
+@media (max-width:480px){
+  .wrap{padding:0 18px}
+  .steps{grid-template-columns:1fr}
+  .step,.step + .step{padding-left:0;border-left:0;border-bottom:1px solid var(--line)}
+  .facts{grid-template-columns:1fr}
+  .tools{grid-template-columns:1fr}
+  .pdv{grid-template-columns:1fr}
+  .pdv .order{border-left:0;border-top:1px solid #262D3A}
+}
+@media (prefers-reduced-motion: reduce){
+  .receipt{animation:none}
+  .btn{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#">rodrigo<span>.</span>dev</a>
+    <nav class="nav" aria-label="Seções">
+      <a href="#servicos">Serviços</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#ferramentas">Ferramentas</a>
+      <a class="btn" href="https://wa.me/5516982257826?text=Oi%20Rodrigo%2C%20vim%20pelo%20seu%20site%20e%20quero%20um%20or%C3%A7amento">Pedir orçamento</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <p class="kicker">Desenvolvedor · Ribeirão Preto, SP</p>
+        <h1>Seu negócio <em>aparecendo</em> no Google e vendendo pelo WhatsApp.</h1>
+        <p class="lede">Faço sites, landing pages e sistemas sob medida para comércio e prestadores de serviço. Você fala direto com quem programa.</p>
+        <div class="cta-row">
+          <a class="btn" href="https://wa.me/5516982257826?text=Oi%20Rodrigo%2C%20vim%20pelo%20seu%20site%20e%20quero%20um%20or%C3%A7amento">Chamar no WhatsApp</a>
+          <a class="btn ghost" href="#servicos">Ver serviços e preços</a>
+        </div>
+      </div>
+
+      <div class="receipt-slot" aria-label="Exemplo de orçamento">
+        <div class="receipt">
+          <div class="c big">ORÇAMENTO</div>
+          <div class="c small">RFM Desenvolvimento · Ribeirão Preto</div>
+          <hr>
+          <div class="row"><span>Site institucional</span><b>✓</b></div>
+          <div class="row"><span>Até 5 páginas</span><b>✓</b></div>
+          <div class="row"><span>Botão de WhatsApp</span><b>✓</b></div>
+          <div class="row"><span>Celular e computador</span><b>✓</b></div>
+          <div class="row"><span>Google Meu Negócio</span><b>✓</b></div>
+          <div class="row"><span>Domínio .com.br</span><b>✓</b></div>
+          <hr>
+          <div class="row"><span>Prazo</span><b>7 a 15 dias</b></div>
+          <div class="row"><span>A partir de</span><b>R$ 1.200</b></div>
+          <hr>
+          <div class="c small">Ajustes depois da entrega: inclusos por 30 dias</div>
+          <div class="barcode" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="block" id="servicos">
+      <div class="sec-head">
+        <div class="sec-num">01 · Serviços</div>
+        <h2>O que eu faço</h2>
+        <p>Preço fechado antes de começar. Você só paga a segunda parte quando o site estiver no ar e do jeito que você aprovou.</p>
+      </div>
+      <div class="services">
+        <article class="svc">
+          <h3>Landing page</h3>
+          <p>Uma página só, feita para transformar visita em mensagem no WhatsApp. Boa para divulgar um serviço ou uma promoção.</p>
+          <ul>
+            <li>Texto pensado para vender</li>
+            <li>Formulário ou WhatsApp direto</li>
+            <li>Pronta para anúncio no Instagram e Google</li>
+          </ul>
+          <div class="price">a partir de<strong>R$ 600</strong></div>
+        </article>
+        <article class="svc featured">
+          <span class="tag">Mais pedido</span>
+          <h3>Site institucional</h3>
+          <p>O site completo da sua empresa: quem vocês são, serviços, fotos, mapa e contato.</p>
+          <ul>
+            <li>Até 5 páginas</li>
+            <li>Aparece no Google (SEO básico)</li>
+            <li>Você edita textos e fotos sem mim</li>
+          </ul>
+          <div class="price">a partir de<strong>R$ 1.200</strong></div>
+        </article>
+        <article class="svc">
+          <h3>Sistema sob medida</h3>
+          <p>Quando planilha e caderno não dão mais conta: pedidos, estoque, agendamentos, caixa.</p>
+          <ul>
+            <li>Funciona no PC e no celular</li>
+            <li>Acesso por usuário e perfil</li>
+            <li>Impressão de pedido e cupom</li>
+          </ul>
+          <div class="price">valor<strong>Sob consulta</strong></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="block" id="como-funciona">
+      <div class="sec-head">
+        <div class="sec-num">02 · Como funciona</div>
+        <h2>Do primeiro “oi” ao site no ar</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h3>Conversa</h3><p>Você me conta pelo WhatsApp o que precisa. Sem compromisso.</p></div>
+        <div class="step"><div class="n">2</div><h3>Proposta</h3><p>Mando preço fechado, prazo e o que está incluso, por escrito.</p></div>
+        <div class="step"><div class="n">3</div><h3>Desenvolvimento</h3><p>Você acompanha uma prévia online e pede ajustes durante o caminho.</p></div>
+        <div class="step"><div class="n">4</div><h3>No ar</h3><p>Publico no seu domínio, cadastro no Google e te ensino a editar.</p></div>
+      </div>
+    </section>
+
+    <section class="block" id="ferramentas">
+      <div class="sec-head">
+        <div class="sec-num">03 · Ferramentas</div>
+        <h2>Com o que eu trabalho</h2>
+        <p>As mesmas tecnologias usadas por empresas grandes, aplicadas no tamanho do seu negócio.</p>
+      </div>
+      <div class="tools">
+        <div class="tool-group">
+          <h3>Front-end</h3>
+          <ul>
+            <li>Next.js<small>Sites rápidos e bem ranqueados no Google</small></li>
+            <li>React</li>
+            <li>JavaScript e TypeScript</li>
+            <li>HTML e CSS</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Back-end</h3>
+          <ul>
+            <li>Node.js</li>
+            <li>NestJS<small>APIs organizadas e fáceis de manter</small></li>
+            <li>Socket.IO<small>Atualização em tempo real</small></li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Banco de dados</h3>
+          <ul>
+            <li>PostgreSQL</li>
+            <li>Prisma</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Infra e deploy</h3>
+          <ul>
+            <li>Docker</li>
+            <li>Nginx</li>
+            <li>Git e GitHub Actions<small>Publicação automática</small></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="about">
+        <div class="sec-num">04 · Sobre</div>
+        <div class="txt">
+          <h2 style="font-size:clamp(28px,3.6vw,42px);font-weight:850;font-variation-settings:'wdth' 108;letter-spacing:-.025em;margin-bottom:22px">Oi, eu sou o Rodrigo.</h2>
+          <p>Sou desenvolvedor full-stack em Ribeirão Preto e estudo Ciência da Computação. Trabalho no dia a dia com sistemas web para empresas, e atendo pequenos negócios pela minha empresa, a RFM Desenvolvimento.</p>
+          <p>Você fala comigo do começo ao fim. Sem agência no meio, sem repassar seu projeto para outra pessoa.</p>
+          <div class="facts">
+            <div class="fact"><b>Emito nota</b><span>Empresa com CNPJ</span></div>
+            <div class="fact"><b>Atendo online</b><span>Ribeirão e todo o Brasil</span></div>
+            <div class="fact"><b>Código moderno</b><span>Next.js, Node, PostgreSQL</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="contato" style="border-top:0;padding-top:24px">
+      <div class="contact">
+        <div>
+          <h2>Bora tirar seu site do papel?</h2>
+          <p>Me manda uma mensagem contando o que é o seu negócio. Respondo no mesmo dia com uma ideia de preço.</p>
+        </div>
+        <div class="channels">
+          <a class="channel" href="https://wa.me/5516982257826?text=Oi%20Rodrigo%2C%20vim%20pelo%20seu%20site%20e%20quero%20um%20or%C3%A7amento"><span>WhatsApp</span><b>(16) 98225-7826</b></a>
+          <a class="channel" href="mailto:rodrigofernandomelo13@gmail.com"><span>E-mail</span><b>rodrigofernandomelo13@gmail.com</b></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>RFM Desenvolvimento LTDA · CNPJ 66.894.883/0001-39</span>
+    <span>Ribeirão Preto · SP</span>
+  </footer>
+</div>
+
+</body>
+</html>
